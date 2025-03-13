@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Woinvest</title>
+    <style>
+        body 
+        {
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; 
+            background: url('background1.jpg') no-repeat center center fixed;
+            background-size: cover; 
+        }
+        .container
+        {
+            text-align: center;
+            color: white;
+        }
+        .headline 
+        {
+            display: flex; /* Sắp xếp theo hàng ngang */
+            flex-direction: column; /* Xếp theo cột */
+            align-items: center; /* Căn giữa theo chiều ngang */
+            justify-content: center; /* Căn giữa theo chiều dọc */
+            gap: 3px; /* Khoảng cách giữa logo và tiêu đề */
+            margin-top: 80px; /* Tạo khoảng cách với phần dưới */
+            margin-bottom: 50px;
+        }
+
+        .logo {
+            width: 300px; /* Kích thước logo */
+            height: auto; /* Giữ tỷ lệ ảnh */
+            border-radius: 10px; /* Bo tròn góc */
+        }
+
+        .title {
+            font-size: 40px; /* Cỡ chữ */
+            font-weight: bold; /* Chữ đậm */
+            text-transform: uppercase; /* Viết hoa toàn bộ */
+            color: white; /* Màu chữ */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Đổ bóng cho chữ */
+            font-family:Arial, Helvetica, sans-serif;
+            margin-top: -60px;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Chia thành 2 cột */
+            gap: 15px; /* Khoảng cách giữa các ô */
+            max-width: 820px; /* Giới hạn độ rộng */
+            margin: 0 auto; /* Căn giữa toàn bộ */
+            justify-content: center;
+        }
+        
+        .contact-box {
+            display: flex;
+            flex-direction: row; /* Sắp xếp nội dung theo hàng ngang */
+            align-items: center; /* Căn giữa logo và chữ */
+            justify-content: flex-start;
+            width: 380px;
+            height: 80px; /* Tăng chiều cao để cân đối */
+            background: rgba(18, 16, 16, 0.726);
+            border-radius: 10px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            font-size: 21px;
+            padding: 10px;
+            transition: all 0.3s ease-in-out;
+            font-family: Arial, Helvetica, sans-serif;
+            gap: 10px; /* Khoảng cách giữa logo và chữ */
+        }
+        
+        
+        
+        .contact-box:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.05);
+        }
+        
+        .contact-logo {
+            width: 50px; /* Điều chỉnh kích thước ảnh logo */
+            height: 50px;
+            margin-top: 5px;
+        }
+        
+        .contact-info-container {
+            display: flex; /* Hiển thị theo hàng ngang */
+            justify-content: center; /* Căn giữa theo chiều ngang */
+            align-items: center; /* Căn giữa theo chiều dọc */
+            gap: 10px; /* Khoảng cách giữa các box */
+            margin: 20px auto; /* Căn giữa trên trang */
+            max-width: 800px;
+            
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            background: rgba(21, 87, 163, 0.963); /* Màu nền mờ */
+            padding: 15px 25px; /* Khoảng cách bên trong */
+            border-radius: 10px; /* Bo góc */
+            width: 360px; /* Chiều rộng box */
+            text-align: center; /* Căn giữa nội dung */
+            font-size: 20px;
+            font-weight: bold;
+            color: #FFFFFF; /* Chữ trắng dễ đọc */
+            font-family: Arial, sans-serif;
+        }
+
+        .contact-info a {
+            color: #efda67; /* Màu vàng nổi bật */
+            text-decoration: none; /* Bỏ gạch chân */
+            margin-left: 8px; /* Tạo khoảng cách với icon */
+            transition: color 0.3s ease-in-out;
+        }
+
+        .contact-info a:hover {
+            color: #FFA500; /* Đổi thành cam khi hover */
+        }
+
+        .note {
+            text-align: center;
+            font-size: 14px;
+            color: white;
+            background: rgba(0, 0, 0, 0.6); /* Nền trong suốt nhẹ */
+            padding: 10px;
+            border-radius: 5px;
+            max-width: 800px;
+            margin: 20px auto;
+            font-family: Arial, sans-serif;
+        }
+        
+        .note ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .note li {
+            margin: 5px 0;
+        }
+        
+        .lazy {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .lazy.loaded {
+            opacity: 1;
+        }
+
+        /* Nút Lên Đầu Trang */
+        #backToTop {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        #backToTop:hover {
+            background-color: #0056b3;
+        }
+
+        html, body {
+            height: 100%; /* Đảm bảo chiều cao toàn trang */
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            flex: 1; /* Đẩy footer xuống dưới */
+        }
+        
+        footer {
+            text-align: center;
+            color: white;
+            padding: 15px;
+            width: 50%; /* Đảm bảo footer full chiều ngang */
+            margin-top: auto; /* Đẩy footer xuống dưới */
+        }
+
+        @media (max-width: 768px) {
+            /* Điều chỉnh container */
+            .container {
+                width: 95%; /* Giúp thu gọn nội dung cho mobile */
+            }
+        
+            /* Điều chỉnh headline */
+            .headline {
+                margin-top: 100px; /* Đẩy xuống một chút */
+                margin-bottom: 30px;
+            }
+        
+            .logo {
+                width: 200px; /* Giảm kích thước logo */
+            }
+        
+            .title {
+                font-size: 28px; /* Giảm kích thước chữ */
+                margin-top: -30px;
+            }
+        
+            /* Điều chỉnh các ô liên hệ */
+            .contact-container {
+                display: flex;
+                flex-direction: column; /* Sắp xếp theo chiều dọc */
+                align-items: center;
+                gap: 10px;
+            }
+        
+            .contact-box {
+                width: 89%; /* Điều chỉnh độ rộng phù hợp màn hình */
+                height: auto;
+                padding: 10px;
+                font-size: 18px;
+            }
+        
+            .contact-logo {
+                width: 40px; /* Thu nhỏ icon */
+                height: 40px;
+            }
+        
+            /* Điều chỉnh thông tin liên hệ */
+            .contact-info-container {
+                flex-direction: column; /* Sắp xếp theo hàng dọc */
+                align-items: center;
+                gap: 10px;
+                margin-left: 0; /* Xóa margin trái */
+            }
+        
+            .contact-info {
+                width: 89%; /* Giảm độ rộng */
+                padding: 10px;
+                font-size: 17px;
+            }
+        
+            /* Ghi chú */
+            .note {
+                font-size: 12px;
+                padding: 8px;
+                max-width: 90%;
+            }
+
+            #backToTop {
+                bottom: 10px;       /* Giảm khoảng cách từ dưới màn hình */
+                right: 10px;        /* Giảm khoảng cách từ bên phải */
+                padding: 9px 6px;   /* Giảm padding */
+                font-size: 12px;     /* Giảm cỡ chữ */
+            }
+
+            footer {
+                font-size: 3vw;  /* Giảm kích thước chữ cho phù hợp mobile */
+                padding: 15px;
+            }
+        }  
+    </style>
+</head>
+<body class="lazyload">
+    <div class="container">
+        <!-- PHẦN LOGO & TIÊU ĐỀ -->
+        <div class="headline">
+            <img data-src="logo_woinvest5.webp" alt="Woinvest Logo" class="logo lazy">
+            <h1 class="title">CHÀO MỪNG BẠN ĐẾN VỚI WOINVEST</h1>
+        </div>
+
+        <!-- PHẦN LIÊN HỆ -->
+        <div class="contact-container">
+            <!-- Facebook -->
+            <a href="https://www.facebook.com/TuanAnhTrader" target="_blank" class="contact-box">
+                <img data-src="facebook_icon.png" alt="Facebook Logo" class="contact-logo lazy">
+                <h3>Liên hệ qua Facebook</h3>
+            </a>
+        
+            <!-- Zalo cá nhân -->
+            <a href="https://zalo.me/0968832563" target="_blank" class="contact-box">
+                <img data-src="zalo_icon.webp" alt="Zalo Logo" class="contact-logo lazy">
+                <h3>Liên hệ qua Zalo cá nhân</h3>
+            </a>
+        
+            <!-- Cộng đồng Zalo -->
+            <a href="https://zalo.me/g/qvgqgs904" target="_blank" class="contact-box">
+                <img data-src="zalo_icon.webp" alt="Zalo Logo" class="contact-logo lazy">
+                <h3>Cộng đồng Woinvest</h3>
+            </a>
+        
+            <!-- Telegram -->
+            <a href="https://t.me/tatrader8888" target="_blank" class="contact-box">
+                <img data-src="telegram_icon.webp" alt="Telegram Logo" class="contact-logo lazy">
+                <h3>Liên hệ qua Telegram</h3>
+            </a>
+        </div>
+
+        <!-- PHẦN THÔNG TIN LIÊN HỆ -->
+        <div class="contact-info-container">
+            <div class="contact-info">
+                📞 <strong>Số điện thoại:</strong> 
+                <a href="tel:0968832563">0968 832 563</a>
+            </div>
+        
+            <div class="contact-info">
+                📧 <strong>Gmail:</strong> 
+                <a href="mailto:Tuananhtrader86@gmail.com">Tuananhtrader86@gmail.com</a>
+            </div>
+        </div>
+
+        <div class="note">
+            <p>
+                <strong>Lưu ý:</strong> Do chính sách hạn chế của một số thiết bị sử dụng hệ điều hành iOS (iPhone), nếu bạn gặp vấn đề khi truy cập, hãy làm theo hướng dẫn sau:
+            </p>
+            <ul>
+                <li>➡ Nhấn vào biểu tượng dấu ba chấm ở góc phải màn hình.</li>
+                <li>➡ Chọn <strong>"Mở trong trình duyệt"</strong> để truy cập đầy đủ các thông tin liên hệ và tham gia cộng đồng <strong>Woinvest</strong>.</li>
+            </ul>
+            <p>Cảm ơn bạn! 🚀</p>
+        </div>
+
+        <!-- NÚT LÊN ĐẦU TRANG -->
+        <button id="backToTop" onclick="scrollToTop()">⬆ Lên đầu trang</button>
+    </div>
+
+    <footer >
+        <p>© <span id="currentYear"></span> Woinvest. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        // Lazy Load cho ảnh
+        document.addEventListener("DOMContentLoaded", function () {
+            let lazyImages = document.querySelectorAll("img.lazy");
+            let observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        let img = entry.target;
+                        img.src = img.getAttribute("data-src");
+                        img.classList.add("loaded");
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            lazyImages.forEach(img => observer.observe(img));
+        });
+
+        // Hiệu ứng cuộn mượt
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener("click", function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute("href")).scrollIntoView({
+                    behavior: "smooth"
+                });
+            });
+        });
+
+        // Hiệu ứng hover cho contact-box
+        document.querySelectorAll(".contact-box").forEach(box => {
+            box.addEventListener("mouseover", () => {
+                box.style.transform = "scale(1.1)";
+                box.style.transition = "all 0.3s ease-in-out";
+            });
+            box.addEventListener("mouseleave", () => {
+                box.style.transform = "scale(1)";
+            });
+        });
+
+        // Nút "Lên đầu trang"
+        window.onscroll = function () {
+            let button = document.getElementById("backToTop");
+            if (document.documentElement.scrollTop > 300) {
+                button.style.display = "block";
+            } else {
+                button.style.display = "none";
+            }
+        };
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        window.onscroll = function () {
+            console.log(document.documentElement.scrollTop); // Kiểm tra giá trị khi cuộn
+        };
+
+        // Tự động cập nhật năm
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("currentYear").textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>
