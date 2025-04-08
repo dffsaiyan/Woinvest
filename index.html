@@ -31,7 +31,7 @@
             align-items: center; /* Căn giữa theo chiều ngang */
             justify-content: center; /* Căn giữa theo chiều dọc */
             gap: 3px; /* Khoảng cách giữa logo và tiêu đề */
-            margin-top: 200px; /* Tạo khoảng cách với phần dưới */
+            margin-top: 900px; /* Tạo khoảng cách với phần dưới */
             margin-bottom: 50px;
         }
 
@@ -57,7 +57,8 @@
             gap: 15px; /* Khoảng cách giữa các ô */
             max-width: 820px; /* Giới hạn độ rộng */
             margin: 0 auto; /* Căn giữa toàn bộ */
-            justify-content: center;
+            justify-content: flex-start;
+            align-items: flex-start;
         }
         
         .contact-box {
@@ -80,8 +81,6 @@
             gap: 10px; /* Khoảng cách giữa logo và chữ */
         }
         
-        
-        
         .contact-box:hover {
             background: rgba(255, 255, 255, 0.4);
             transform: scale(1.05);
@@ -93,6 +92,64 @@
             margin-top: 5px;
         }
         
+        .form-container {
+            margin: 50px auto;
+            background-color: #ffffff;
+            padding: 25px 60px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .form-container h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333333;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555555;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            font-size: 18px;
+            color: #ffffff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+
         .contact-info-container {
             display: flex; /* Hiển thị theo hàng ngang */
             justify-content: center; /* Căn giữa theo chiều ngang */
@@ -100,7 +157,6 @@
             gap: 10px; /* Khoảng cách giữa các box */
             margin: 20px auto; /* Căn giữa trên trang */
             max-width: 800px;
-            
         }
 
         .contact-info {
@@ -112,10 +168,9 @@
             border-radius: 10px; /* Bo góc */
             width: 360px; /* Chiều rộng box */
             text-align: center; /* Căn giữa nội dung */
-            font-size: 20px;
+            font-size: 21px;
             font-weight: bold;
             color: #FFFFFF; /* Chữ trắng dễ đọc */
-            font-family: Arial, sans-serif;
         }
 
         .contact-info a {
@@ -196,6 +251,35 @@
             margin-top: auto; /* Đẩy footer xuống dưới */
         }
 
+        .goToContact {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #ff5722;
+            color: white;
+            border: none;
+            padding: 22px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            z-index: 999;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            animation: blink 1.5s infinite;
+            transition: background-color 0.3s ease;
+        }
+        
+        .goToContact:hover {
+            background-color: #e64a19;
+        }
+        
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; transform: scale(1.05); }
+            100% { opacity: 1; }
+        }
+
         @media (max-width: 768px) {
             /* Điều chỉnh container */
             .container {
@@ -204,7 +288,7 @@
         
             /* Điều chỉnh headline */
             .headline {
-                margin-top: 350px; /* Đẩy xuống một chút */
+                margin-top: 700px; /* Đẩy xuống một chút */
                 margin-bottom: 30px;
             }
         
@@ -269,6 +353,27 @@
                 font-size: 3vw;  /* Giảm kích thước chữ cho phù hợp mobile */
                 padding: 15px;
             }
+
+            .form-container {
+                margin: 25px auto;          /* Căn giữa form */
+                padding: 14px;              /* Giảm padding */
+                max-width: 90%;             /* Chiếm tối đa 90% chiều rộng màn hình */
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Nhẹ hơn chút */
+            }
+        
+            .form-container h2 {
+                font-size: 20px;            /* Nhỏ hơn xíu */
+            }
+        
+            .form-group input {
+                font-size: 14px;            /* Chữ input nhỏ hơn */
+                padding: 3px;
+            }
+        
+            .submit-btn {
+                font-size: 16px;
+                padding: 10px;
+            }   
         }  
     </style>
 </head>
@@ -333,12 +438,34 @@
 
         <!-- NÚT LÊN ĐẦU TRANG -->
         <button id="backToTop" onclick="scrollToTop()">⬆ Lên đầu trang</button>
+
+        <!-- GOOGLE FORM -->
+        <div class="form-container" id = "contactForm">
+            <h2>Thông tin liên hệ</h2>
+            <form action="https://script.google.com/macros/s/AKfycbxorrTw5yghNB3iwiKQeWSPfYkHz-sr42E5j3_5XkmJNDHljs4rhyKyjnIYwwz_CnJdYw/exec" method="post">
+                <div class="form-group">
+                    <label for="name">Họ tên:</label>
+                    <input type="text" id="name" name="name" placeholder="Nhập họ và tên" pattern="^[a-zA-ZÀ-ỹ\s]{2,50}$" required oninvalid="this.setCustomValidity('Vui lòng nhập họ và tên hợp lệ (tối thiểu 2 ký tự, không chứa số hoặc ký tự đặc biệt)')" oninput="this.setCustomValidity('')">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Số điện thoại:</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Nhập số điện thoại của bạn" pattern="[0-9]{10,11}" required oninvalid="this.setCustomValidity('Vui lòng nhập số điện thoại hợp lệ (10 hoặc 11 chữ số)')" oninput="this.setCustomValidity('')">
+                </div>
+                <div class="form-group">
+                    <label for="email">Gmail:</label>
+                    <input type="email" id="email" name="email" placeholder="Nhập địa chỉ Gmail" pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$" required oninvalid="this.setCustomValidity('Vui lòng nhập địa chỉ Gmail hợp lệ (ví dụ: ten@gmail.com)')" oninput="this.setCustomValidity('')">
+                </div>
+                <button type="submit" class="submit-btn">Gửi thông tin</button>
+            </form>
+        </div>
     </div>
 
     <footer >
         <p>© <span id="currentYear"></span> Woinvest. All rights reserved.</p>
     </footer>
     
+    <button class="goToContact">ĐĂNG KÝ NGAY</button>
+
     <script>
         // Lazy Load cho ảnh
         document.addEventListener("DOMContentLoaded", function () {
@@ -399,6 +526,37 @@
         // Tự động cập nhật năm
         document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("currentYear").textContent = new Date().getFullYear();
+        });
+
+        document.querySelector("form").addEventListener("submit", async function (e) {
+            e.preventDefault(); // Ngăn không cho trình duyệt tự động gửi form
+        
+            const form = e.target;
+            const formData = new FormData(form);
+        
+            try {
+              const response = await fetch(form.action, {
+                method: "POST",
+                body: formData,
+              });
+        
+              if (response.ok) {
+                alert("🎉 Gửi thông tin thành công! Cảm ơn bạn đã liên hệ.");
+                form.reset();
+              } else {
+                alert("❌ Gửi không thành công. Vui lòng thử lại sau.");
+              }
+            } catch (error) {
+              alert("⚠️ Có lỗi kết nối. Hãy kiểm tra lại mạng của bạn.");
+            }
+          });
+
+          // Gắn sự kiện cuộn đến form liên hệ
+        document.querySelector('.goToContact').addEventListener('click', function () {
+            const contactForm = document.querySelector('#contactForm');
+            if (contactForm) {
+                contactForm.scrollIntoView({ behavior: 'smooth' });
+            }
         });
     </script>
 </body>
